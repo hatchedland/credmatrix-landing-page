@@ -27,10 +27,10 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row justify-start md:justify-center gap-12 sm:gap-16">
               <Button variant="primary" size="lg" className="hover:scale-105 transition-transform">
                 Get Started
-                <ArrowRight className="w-14 h-14 md:w-20 md:h-20 ml-8" />
+                <ArrowRight className="w-12 h-12 md:w-16 md:h-16 ml-4 md:ml-8" />
               </Button>
               <Button variant="outline" size="lg" className="hover:scale-105 transition-transform">
-                <Compass className="w-14 h-14 md:w-20 md:h-20 mr-8" />
+                <Compass className="w-12 h-12 md:w-16 md:h-16 mr-4 md:mr-8" />
                 Explore Product
               </Button>
             </div>
