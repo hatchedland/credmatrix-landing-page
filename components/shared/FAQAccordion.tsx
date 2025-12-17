@@ -12,7 +12,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null)
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-12 md:space-y-16">
       {items.map((item, index) => (
         <div
           key={index}
@@ -20,15 +20,15 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
         >
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full flex items-center justify-between p-20 text-left hover:bg-neutral-50 transition-colors"
+            className="w-full flex items-center justify-between p-12 md:p-20 text-left hover:bg-neutral-50 transition-colors"
           >
-            <span className="flex items-center gap-12 text-base font-medium text-neutral-900">
+            <span className="flex items-center gap-8 md:gap-12 text-sm sm:text-base font-medium text-neutral-900">
               <span className="text-neutral-400">{index + 1}.</span>
               {item.question}
             </span>
             <svg
               className={cn(
-                'w-20 h-20 text-neutral-600 transition-transform duration-200',
+                'w-16 h-16 md:w-20 md:h-20 text-neutral-600 transition-transform duration-200 flex-shrink-0 ml-8',
                 openIndex === index && 'transform rotate-180'
               )}
               fill="none"
@@ -44,8 +44,8 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
             </svg>
           </button>
           {openIndex === index && (
-            <div className="px-20 pb-20">
-              <p className="text-sm text-neutral-600 pl-32">{item.answer}</p>
+            <div className="px-12 pb-12 md:px-20 md:pb-20">
+              <p className="text-xs sm:text-sm text-neutral-600 pl-24 md:pl-32">{item.answer}</p>
             </div>
           )}
         </div>

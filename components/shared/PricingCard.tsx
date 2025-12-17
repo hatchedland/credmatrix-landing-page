@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import { User, Users, Building2, Check, Sparkles } from 'lucide-react'
 import { PricingTier } from '@/types'
 import Button from '@/components/ui/Button'
 import { cn } from '@/lib/utils'
@@ -6,60 +10,114 @@ interface PricingCardProps {
   tier: PricingTier
 }
 
+const iconMap: Record<string, React.ElementType> = {
+  user: User,
+  users: Users,
+  building: Building2,
+}
+
 export default function PricingCard({ tier }: PricingCardProps) {
+  const Icon = iconMap[tier.icon] || User
+
   const variants = {
-    grey: 'bg-neutral-100 border-neutral-300',
-    blue: 'bg-accent-blue border-blue-300 ring-2 ring-primary',
-    pink: 'bg-accent-pink border-red-300',
+    grey: {
+      card: 'bg-gradient-to-br from-neutral-50 via-slate-50 to-neutral-100 border-neutral-200',
+      icon: 'bg-neutral-200 text-neutral-600',
+      price: 'text-neutral-900',
+      button: 'primary' as const,
+    },
+    blue: {
+      card: 'bg-gradient-to-br from-blue-50 via-indigo-50 to-blue-100 border-primary/30 shadow-lg shadow-primary/10',
+      icon: 'bg-primary text-white',
+      price: 'text-primary',
+      button: 'primary' as const,
+    },
+    pink: {
+      card: 'bg-gradient-to-br from-rose-50 via-pink-50 to-red-100 border-rose-200',
+      icon: 'bg-rose-500 text-white',
+      price: 'text-rose-600',
+      button: 'primary' as const,
+    },
   }
 
+  const style = variants[tier.variant]
+
   return (
-    <div
+    <motion.div
       className={cn(
-        'rounded-xl border-2 p-32 transition-all duration-200',
-        variants[tier.variant],
-        tier.highlighted && 'transform scale-105'
+        'relative rounded-2xl border-2 p-6 md:p-8 transition-all duration-300 h-full flex flex-col',
+        style.card,
+        tier.highlighted && 'ring-2 ring-primary ring-offset-2'
       )}
+      whileHover={{ y: -8, transition: { duration: 0.3 } }}
     >
-      <div className="text-center mb-32">
-        <h3 className="text-2xl font-bold text-neutral-900 mb-8">
-          {tier.name}
-        </h3>
-        <p className="text-sm text-neutral-600 mb-24">{tier.description}</p>
-        <div className="mb-24">
-          <span className="text-4xl font-bold text-neutral-900">
-            {tier.price}
+      {/* Popular Badge */}
+      {tier.highlighted && (
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <span className="inline-flex items-center gap-1 bg-primary text-white text-xs font-semibold px-3 py-1 rounded-full">
+            <Sparkles className="w-3 h-3" />
+            Most Popular
           </span>
-          {tier.period && (
-            <span className="text-sm text-neutral-600 ml-8">/{tier.period}</span>
-          )}
         </div>
-        <Button variant="primary" className="w-full">
-          {tier.ctaText}
-        </Button>
+      )}
+
+      {/* Icon */}
+      <div className="mb-4 md:mb-6">
+        <div className={cn('w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center', style.icon)}>
+          <Icon className="w-6 h-6 md:w-7 md:h-7" />
+        </div>
       </div>
 
-      <div className="space-y-16">
-        <h4 className="font-semibold text-neutral-900">What&apos;s Included</h4>
-        <ul className="space-y-12">
+      {/* Header */}
+      <div className="mb-4 md:mb-6">
+        <h3 className="text-lg md:text-xl font-bold text-neutral-900 mb-1 md:mb-2">
+          {tier.name}
+        </h3>
+        <p className="text-xs md:text-sm text-neutral-500">{tier.description}</p>
+      </div>
+
+      {/* Price */}
+      <div className="mb-6 md:mb-8">
+        <span className={cn('text-3xl md:text-4xl font-bold', style.price)}>
+          {tier.price}
+        </span>
+        {tier.period && (
+          <span className="text-xs md:text-sm text-neutral-500 ml-1">/{tier.period}</span>
+        )}
+      </div>
+
+      {/* Features */}
+      <div className="flex-1 mb-6 md:mb-8">
+        <p className="text-xs md:text-sm font-semibold text-neutral-700 mb-3 md:mb-4">What&apos;s included:</p>
+        <ul className="space-y-2 md:space-y-3">
           {tier.features.map((feature, index) => (
-            <li key={index} className="flex items-start gap-8">
-              <svg
-                className="w-20 h-20 text-green-600 flex-shrink-0 mt-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="text-sm text-neutral-700">{feature}</span>
-            </li>
+            <motion.li
+              key={index}
+              className="flex items-start gap-2 md:gap-3"
+              initial={{ opacity: 0, x: -10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true }}
+            >
+              <div className="flex-shrink-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
+                <Check className="w-2.5 h-2.5 md:w-3 md:h-3 text-green-600" />
+              </div>
+              <span className="text-xs md:text-sm text-neutral-600">{feature}</span>
+            </motion.li>
           ))}
         </ul>
       </div>
-    </div>
+
+      {/* CTA Button */}
+      <Button
+        variant={style.button}
+        className={cn(
+          'w-full',
+          tier.highlighted && 'shadow-lg shadow-primary/25'
+        )}
+      >
+        {tier.ctaText}
+      </Button>
+    </motion.div>
   )
 }

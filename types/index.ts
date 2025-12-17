@@ -14,6 +14,7 @@ export interface CardProps {
   description?: string
   children?: React.ReactNode
   variant?: 'default' | 'blue' | 'green' | 'pink' | 'grey'
+  size?: 'sm' | 'md' | 'lg'
   className?: string
 }
 
@@ -22,6 +23,8 @@ export interface FeatureCardProps {
   description: string
   icon?: React.ReactNode
   variant?: 'default' | 'blue' | 'green' | 'pink'
+  href?: string
+  linkText?: string
 }
 
 export interface PricingTier {
@@ -33,6 +36,7 @@ export interface PricingTier {
   highlighted?: boolean
   variant: 'grey' | 'blue' | 'pink'
   ctaText: string
+  icon: string
 }
 
 export interface FAQItem {
@@ -48,9 +52,11 @@ export interface StatItem {
 export interface ProductFeature {
   title: string
   description: string
+  icon: string
 }
 
 export interface ProductSection {
+  id: string
   title: string
   description: string
   features: ProductFeature[]

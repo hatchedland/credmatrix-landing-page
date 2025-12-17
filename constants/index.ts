@@ -32,11 +32,12 @@ export const PRICING_TIERS: PricingTier[] = [
     ],
     variant: 'grey',
     ctaText: 'Get Started',
+    icon: 'user',
   },
   {
     name: 'Bulk',
     price: '₹50,000',
-    description: 'Perfect for small tasks and one-time credit checks',
+    description: 'Ideal for teams needing regular credit assessments',
     features: [
       'Self Search',
       'Web Search',
@@ -46,11 +47,12 @@ export const PRICING_TIERS: PricingTier[] = [
     highlighted: true,
     variant: 'blue',
     ctaText: 'Get Started',
+    icon: 'users',
   },
   {
     name: 'Enterprise',
     price: 'Custom',
-    description: 'Perfect for small tasks and one-time credit checks',
+    description: 'Full-featured solution for large organizations',
     features: [
       'Self Search',
       'Web Search',
@@ -59,7 +61,8 @@ export const PRICING_TIERS: PricingTier[] = [
       'Real Export Consultancy',
     ],
     variant: 'pink',
-    ctaText: 'Get Started',
+    ctaText: 'Contact Sales',
+    icon: 'building',
   },
 ]
 
@@ -92,43 +95,47 @@ export const FAQ_ITEMS: FAQItem[] = [
 
 export const PRODUCT_SECTIONS: ProductSection[] = [
   {
+    id: 'risk-assessment',
     title: 'Risk Assessment',
     description: 'Evaluate credit worthiness with automated data collection, fast response and intelligence',
     features: [
-      { title: 'Self Data Collection', description: 'Compile information from verified databases quickly' },
-      { title: 'Credit Intelligence', description: 'AI driven insights on credit' },
-      { title: 'Speed', description: 'Get report within seconds' },
-      { title: 'Cost', description: 'Affordable pricing structure' },
+      { title: 'Self Data Collection', description: 'Compile information from verified databases quickly', icon: 'database' },
+      { title: 'Credit Intelligence', description: 'AI driven insights on credit', icon: 'brain' },
+      { title: 'Speed', description: 'Get report within seconds', icon: 'zap' },
+      { title: 'Cost', description: 'Affordable pricing structure', icon: 'wallet' },
     ],
   },
   {
+    id: 'cred-grawler',
     title: 'Cred Grawler',
     description: 'Deep scan scoring for better credit decisioning for both SME and retail',
     features: [
-      { title: 'Deep Scan', description: 'Comprehensive data scan' },
-      { title: 'Speed', description: 'Ultra fast processing' },
-      { title: 'Toxicity Flags', description: 'Identify potential red flags' },
-      { title: 'EWCS', description: 'Early warning credit system' },
+      { title: 'Deep Scan', description: 'Comprehensive data scan', icon: 'scan-search' },
+      { title: 'Speed', description: 'Ultra fast processing', icon: 'zap' },
+      { title: 'Toxicity Flags', description: 'Identify potential red flags', icon: 'alert-triangle' },
+      { title: 'EWCS', description: 'Early warning credit system', icon: 'bell-ring' },
     ],
   },
   {
+    id: 'portfolio-monitoring',
     title: 'Portfolio Monitoring',
     description: 'Real time monitoring of your current portfolio for any flags',
     features: [
-      { title: 'MCA Updates', description: 'Ministry of corporate affairs monitoring' },
-      { title: 'Compliance', description: 'Track regulatory compliance' },
-      { title: 'Analytics', description: 'Portfolio performance insights' },
-      { title: 'Deep Search', description: 'Comprehensive portfolio analysis' },
+      { title: 'MCA Updates', description: 'Ministry of corporate affairs monitoring', icon: 'building' },
+      { title: 'Compliance', description: 'Track regulatory compliance', icon: 'shield-check' },
+      { title: 'Analytics', description: 'Portfolio performance insights', icon: 'bar-chart-3' },
+      { title: 'Deep Search', description: 'Comprehensive portfolio analysis', icon: 'search' },
     ],
   },
   {
+    id: 'risk-consultancy',
     title: 'Risk Consultancy',
     description: 'Setup complete credit policy frameworks in-house with ease',
     features: [
-      { title: 'Policies & SOPs', description: 'Customized credit policies' },
-      { title: 'Scoring Models', description: 'Build credit scoring framework' },
-      { title: 'Portfolio Review', description: 'Expert portfolio assessment' },
-      { title: 'Industry Guidance', description: 'Sector specific expertise' },
+      { title: 'Policies & SOPs', description: 'Customized credit policies', icon: 'clipboard-list' },
+      { title: 'Scoring Models', description: 'Build credit scoring framework', icon: 'calculator' },
+      { title: 'Portfolio Review', description: 'Expert portfolio assessment', icon: 'folder-search' },
+      { title: 'Industry Guidance', description: 'Sector specific expertise', icon: 'compass' },
     ],
   },
 ]

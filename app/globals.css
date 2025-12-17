@@ -66,25 +66,9 @@
     font-family: var(--font-lato);
   }
 
+  /* Base heading styles - can be overridden by Heading component */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-libre-caslon-text);
-    @apply font-normal;
-  }
-
-  h1 {
-    @apply text-4xl md:text-5xl;
-  }
-
-  h2 {
-    @apply text-3xl md:text-4xl;
-  }
-
-  h3 {
-    @apply text-2xl md:text-3xl;
-  }
-
-  h4 {
-    @apply text-xl md:text-2xl;
   }
 
   p {
@@ -105,123 +89,14 @@
     font-family: var(--font-lato);
   }
 
-  /* Fade in animation for rotating text */
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  /* Fade in up animation */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.6s ease-out forwards;
-  }
-
-  /* Fade in from left */
-  .animate-fade-in-left {
-    animation: fadeInLeft 0.6s ease-out forwards;
-  }
-
-  /* Fade in from right */
-  .animate-fade-in-right {
-    animation: fadeInRight 0.6s ease-out forwards;
-  }
-
-  /* Scale in animation */
-  .animate-scale-in {
-    animation: scaleIn 0.5s ease-out forwards;
-  }
-
-  /* Floating animation */
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
-  }
-
-  /* Pulse animation */
+  /* Pulse animation - used for CTA sparkles */
   .animate-pulse-slow {
     animation: pulseSlow 2s ease-in-out infinite;
   }
 
-  /* Stagger delays for children */
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  .delay-500 { animation-delay: 500ms; }
-  .delay-600 { animation-delay: 600ms; }
-
-  /* Initial state for animated elements */
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-  }
-
-  .animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeInLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
+  /* Float animation - for decorative elements */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 }
 
@@ -231,5 +106,14 @@
   }
   50% {
     opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }

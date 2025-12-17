@@ -1,63 +1,52 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
 import { cn } from '@/lib/utils'
+import {
+  VARIANTS,
+  EASING,
+  DURATION,
+  VIEWPORT_CONFIG,
+} from '@/lib/animations'
+
+type AnimationType = 'fadeUp' | 'fadeLeft' | 'fadeRight' | 'scale' | 'fade'
 
 interface AnimateOnScrollProps {
   children: React.ReactNode
   className?: string
-  animation?: 'fade-up' | 'fade-left' | 'fade-right' | 'scale' | 'fade'
+  animation?: AnimationType
   delay?: number
-  threshold?: number
+  duration?: keyof typeof DURATION
 }
 
 export default function AnimateOnScroll({
   children,
   className,
-  animation = 'fade-up',
+  animation = 'fadeUp',
   delay = 0,
-  threshold = 0.1,
+  duration = 'normal',
 }: AnimateOnScrollProps) {
   const ref = useRef<HTMLDivElement>(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      { threshold }
-    )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
-    return () => observer.disconnect()
-  }, [threshold])
-
-  const animationClasses = {
-    'fade-up': 'animate-fade-in-up',
-    'fade-left': 'animate-fade-in-left',
-    'fade-right': 'animate-fade-in-right',
-    'scale': 'animate-scale-in',
-    'fade': 'animate-fade-in',
-  }
+  const isInView = useInView(ref, {
+    once: VIEWPORT_CONFIG.once,
+    margin: VIEWPORT_CONFIG.margin,
+  })
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      className={cn(
-        'opacity-0',
-        isVisible && animationClasses[animation],
-        className
-      )}
-      style={{ animationDelay: `${delay}ms` }}
+      initial="hidden"
+      animate={isInView ? 'visible' : 'hidden'}
+      variants={VARIANTS[animation]}
+      transition={{
+        duration: DURATION[duration],
+        delay: delay / 1000,
+        ease: EASING,
+      }}
+      className={cn(className)}
     >
       {children}
-    </div>
+    </motion.div>
   )
 }

@@ -37,7 +37,7 @@ A modern, responsive landing page for CredMatrix - a financial due-diligence int
 
 ### Colors
 
-- **Primary**: #0066FF (Blue)
+- **[#0E6EBE]**: #0066FF (Blue)
 - **Secondary**: #1A2B4A (Dark Navy)
 - **Accent Colors**:
   - Blue: #D4E9FF
@@ -117,7 +117,7 @@ npm start
 ## Components
 
 ### UI Components
-- `Button` - Multiple variants (primary, secondary, outline, ghost)
+- `Button` - Multiple variants ([#0E6EBE], secondary, outline, ghost)
 - `Card` - Variant-based card component
 - `Input` - Form input with label and error states
 
@@ -141,7 +141,7 @@ Edit `tailwind.config.ts` to modify the color palette:
 theme: {
   extend: {
     colors: {
-      primary: {
+      [#0E6EBE]: {
         DEFAULT: '#0066FF',
         // ... more colors
       }

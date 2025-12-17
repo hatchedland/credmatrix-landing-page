@@ -13,9 +13,9 @@
 export const colors = {
   // Brand Colors
   primary: {
-    DEFAULT: '#0066FF',
-    dark: '#0052CC',
-    light: '#3385FF',
+    DEFAULT: '#0E6EBE',
+    dark: '#0B5A9D',
+    light: '#3D8ACC',
   },
 
   secondary: {
