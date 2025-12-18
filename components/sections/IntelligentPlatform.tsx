@@ -53,11 +53,15 @@ export default function IntelligentPlatform() {
           {features.map((feature, index) => (
             <AnimateOnScroll key={index} animation="fadeUp" delay={index * 100}>
               <Card variant="green" className="h-full hover:scale-105 transition-transform duration-300">
-                <div className="mb-8 md:mb-12 w-fit rounded-md bg-white p-4 md:p-6">{feature.icon}</div>
-                <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 md:mb-8">
-                  {feature.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-600">{feature.description}</p>
+                <div className="flex items-start gap-6 md:gap-6">
+                  <div className="p-3 md:p-6 bg-white rounded-md shrink-0">{feature.icon}</div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2 md:mb-4">
+                      {feature.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600">{feature.description}</p>
+                  </div>
+                </div>
               </Card>
             </AnimateOnScroll>
           ))}

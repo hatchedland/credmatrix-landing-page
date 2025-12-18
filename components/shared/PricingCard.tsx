@@ -109,15 +109,18 @@ export default function PricingCard({ tier }: PricingCardProps) {
       </div>
 
       {/* CTA Button */}
-      <Button
-        variant={style.button}
-        className={cn(
-          'w-full',
-          tier.highlighted && 'shadow-lg shadow-primary/25'
-        )}
-      >
-        {tier.ctaText}
-      </Button>
+      <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer" className="w-full">
+        <Button
+          variant={style.button}
+          size="sm"
+          className={cn(
+            'w-full',
+            tier.highlighted && 'shadow-lg shadow-primary/25'
+          )}
+        >
+          {tier.ctaText}
+        </Button>
+      </a>
     </motion.div>
   )
 }

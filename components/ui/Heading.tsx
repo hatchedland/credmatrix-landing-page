@@ -13,11 +13,11 @@ interface HeadingProps {
 }
 
 const sizeClasses: Record<HeadingSize, string> = {
-  xl: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold',      // Page titles
-  lg: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold',       // Section titles
-  md: 'text-lg sm:text-xl md:text-2xl font-semibold',                // Subsection titles
-  sm: 'text-base sm:text-lg md:text-xl font-semibold',               // Card titles
-  xs: 'text-sm sm:text-base font-semibold',                          // Small titles
+  xl: 'text-2xl sm:text-3xl md:text-3xl lg:text-4xl',      // Page titles
+  lg: 'text-xl sm:text-2xl md:text-2xl lg:text-3xl',       // Section titles
+  md: 'text-lg sm:text-xl md:text-2xl',                // Subsection titles
+  sm: 'text-base sm:text-lg md:text-xl',               // Card titles
+  xs: 'text-sm sm:text-base',                          // Small titles
 }
 
 const alignClasses: Record<HeadingAlign, string> = {

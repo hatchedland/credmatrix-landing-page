@@ -2,7 +2,8 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Mail, Phone, MapPin, ArrowRight, DollarSign } from 'lucide-react'
+import Image from 'next/image'
+import { Mail, Phone, MapPin, ArrowRight, IndianRupee } from 'lucide-react'
 import Container from './Container'
 import Button from '@/components/ui/Button'
 import Input from '@/components/ui/Input'
@@ -18,36 +19,23 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-32 md:gap-48">
             {/* Logo and Description */}
             <div>
-              <Link href="/" className="flex items-center gap-4 md:gap-8 mb-16 md:mb-24">
-                <div className="w-24 h-24 md:w-32 md:h-32 bg-primary rounded flex items-center justify-center">
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="md:w-20 md:h-20"
-                  >
-                    <path
-                      d="M10 2L3 7V13L10 18L17 13V7L10 2Z"
-                      fill="white"
-                    />
-                  </svg>
-                </div>
-                <span className="text-base md:text-xl font-bold">CredMatrix</span>
+              <Link href="/" className="flex items-center mb-16 md:mb-24">
+                <Image
+                  src="/credmatrix-logo.png"
+                  alt="CredMatrix"
+                  width={150}
+                  height={40}
+                  className="h-32 md:h-40 w-auto"
+                />
               </Link>
               <div className="space-y-8 md:space-y-12">
                 <div className="flex items-center gap-8 text-xs sm:text-sm">
                   <Mail className="w-12 h-12 md:w-16 md:h-16" />
-                  <span>credmatrix@email.com</span>
+                  <span>contact@credmatrix.ai</span>
                 </div>
                 <div className="flex items-center gap-8 text-xs sm:text-sm">
                   <Phone className="w-12 h-12 md:w-16 md:h-16" />
-                  <span>+91 9876543210</span>
-                </div>
-                <div className="flex items-center gap-8 text-xs sm:text-sm">
-                  <MapPin className="w-12 h-12 md:w-16 md:h-16" />
-                  <span>Gat No-12, Pune</span>
+                  <span>+91-7007768906</span>
                 </div>
               </div>
               {/* Social Links */}
@@ -90,24 +78,26 @@ export default function Footer() {
                 We&apos;re here to help. Chat to our team today.
               </p>
               <div className="flex flex-col sm:flex-row gap-8 md:gap-12">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 border-white text-white hover:bg-white hover:text-secondary"
-                  onClick={() => setShowModal(true)}
-                >
-                  <DollarSign className="w-12 h-12 md:w-16 md:h-16 mr-4" />
-                  View Pricing
-                </Button>
-                <Button
-                  variant="primary"
-                  size="sm"
-                  className="flex-1"
-                  onClick={() => setShowModal(true)}
-                >
-                  Get Started
-                  <ArrowRight className="w-12 h-12 md:w-16 md:h-16 ml-4" />
-                </Button>
+                <Link href="/pricing" className="flex-1">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="w-full whitespace-nowrap border-white text-white hover:bg-white hover:text-secondary"
+                  >
+                    <IndianRupee className="w-12 h-12 md:w-16 md:h-16 mr-4" />
+                    View Pricing
+                  </Button>
+                </Link>
+                <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    className="w-full whitespace-nowrap"
+                  >
+                    Get Started
+                    <ArrowRight className="w-12 h-12 md:w-16 md:h-16 ml-4" />
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -138,7 +128,7 @@ export default function Footer() {
               <Input label="Name" placeholder="Your name" />
               <Input label="Email" type="email" placeholder="your@email.com" />
               <Input label="Company" placeholder="Your company" />
-              <Button variant="primary" className="w-full">
+              <Button variant="primary" size="sm" className="w-full">
                 Submit
               </Button>
             </form>

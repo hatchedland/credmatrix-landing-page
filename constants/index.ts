@@ -1,6 +1,7 @@
 import { NavLink, PricingTier, FAQItem, StatItem, ProductSection } from '@/types'
 
 export const NAV_LINKS: NavLink[] = [
+    { label: 'Home', href: '/' },
   { label: 'Products', href: '/products' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'About', href: '/about' },
@@ -8,10 +9,10 @@ export const NAV_LINKS: NavLink[] = [
 
 export const FOOTER_LINKS = {
   quickLinks: [
-    { label: 'Home', href: '#' },
-    { label: 'Products', href: '#' },
-    { label: 'Pricing', href: '#' },
-    { label: 'About us', href: '#' }
+    { label: 'Home', href: '/' },
+    { label: 'Products', href: '/products' },
+    { label: 'Pricing', href: '/pricing' },
+    { label: 'About us', href: '/about' }
   ],
 }
 

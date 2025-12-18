@@ -53,11 +53,15 @@ export default function TrueCost() {
           {costs.map((cost, index) => (
             <AnimateOnScroll key={index} animation="fadeUp" delay={index * 100}>
               <Card variant="pink" className="h-full hover:scale-105 transition-transform duration-300">
-                <div className="mb-8 md:mb-12 p-4 md:p-6 bg-white w-fit rounded-md">{cost.icon}</div>
-                <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-4 md:mb-8">
-                  {cost.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-neutral-600">{cost.description}</p>
+                <div className="flex items-start gap-6 md:gap-6">
+                  <div className="p-3 md:p-6 bg-white rounded-md shrink-0">{cost.icon}</div>
+                  <div>
+                    <h3 className="text-base sm:text-lg font-semibold text-neutral-900 mb-2 md:mb-4">
+                      {cost.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-neutral-600">{cost.description}</p>
+                  </div>
+                </div>
               </Card>
             </AnimateOnScroll>
           ))}

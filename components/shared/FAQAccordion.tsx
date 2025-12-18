@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { FAQItem } from '@/types'
 import { cn } from '@/lib/utils'
 
@@ -14,26 +15,26 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
   return (
     <div className="space-y-12 md:space-y-16">
       {items.map((item, index) => (
-        <div
+        <motion.div
           key={index}
           className="border border-neutral-200 rounded-lg overflow-hidden"
+          initial={false}
         >
           <button
             onClick={() => setOpenIndex(openIndex === index ? null : index)}
-            className="w-full flex items-center justify-between p-12 md:p-20 text-left hover:bg-neutral-50 transition-colors"
+            className="w-full flex items-center justify-between p-16 md:p-24 text-left hover:bg-neutral-50 transition-colors"
           >
             <span className="flex items-center gap-8 md:gap-12 text-sm sm:text-base font-medium text-neutral-900">
               <span className="text-neutral-400">{index + 1}.</span>
               {item.question}
             </span>
-            <svg
-              className={cn(
-                'w-16 h-16 md:w-20 md:h-20 text-neutral-600 transition-transform duration-200 flex-shrink-0 ml-8',
-                openIndex === index && 'transform rotate-180'
-              )}
+            <motion.svg
+              className="w-16 h-16 md:w-20 md:h-20 text-neutral-600 flex-shrink-0 ml-8"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              animate={{ rotate: openIndex === index ? 180 : 0 }}
+              transition={{ duration: 0.3, ease: 'easeInOut' }}
             >
               <path
                 strokeLinecap="round"
@@ -41,14 +42,24 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                 strokeWidth={2}
                 d="M19 9l-7 7-7-7"
               />
-            </svg>
+            </motion.svg>
           </button>
-          {openIndex === index && (
-            <div className="px-12 pb-12 md:px-20 md:pb-20">
-              <p className="text-xs sm:text-sm text-neutral-600 pl-24 md:pl-32">{item.answer}</p>
-            </div>
-          )}
-        </div>
+          <AnimatePresence initial={false}>
+            {openIndex === index && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: 'auto', opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
+                className="overflow-hidden"
+              >
+                <div className="px-16 pb-16 md:px-24 md:pb-24 pt-4">
+                  <p className="text-xs sm:text-sm text-neutral-600 pl-24 md:pl-32">{item.answer}</p>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
       ))}
     </div>
   )

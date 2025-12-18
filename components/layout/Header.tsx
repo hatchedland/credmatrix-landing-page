@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { Calendar, ArrowRight } from 'lucide-react'
+import { Calendar, ArrowRight, Menu, X } from 'lucide-react'
 import Container from './Container'
 import Button from '@/components/ui/Button'
 import { NAV_LINKS } from '@/constants'
@@ -10,37 +12,25 @@ import { cn } from '@/lib/utils'
 
 export default function Header() {
   const pathname = usePathname()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
     <header className="sticky top-0 z-50 bg-white border-b border-neutral-200">
       <Container>
         <div className="flex items-center justify-between h-48 md:h-64">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-4 md:gap-8">
-            <div className="flex items-center gap-4 md:gap-8">
-              <div className="w-24 h-24 md:w-32 md:h-32 bg-primary rounded flex items-center justify-center">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="md:w-20 md:h-20"
-                >
-                  <path
-                    d="M10 2L3 7V13L10 18L17 13V7L10 2Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
-              <span className="text-base md:text-xl font-bold text-secondary">
-                CredMatrix
-              </span>
-            </div>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/credmatrix-logo.png"
+              alt="CredMatrix"
+              width={150}
+              height={40}
+              className="h-32 md:h-40 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-32">
+          <nav className="hidden lg:flex items-center gap-32">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
@@ -59,16 +49,66 @@ export default function Header() {
 
           {/* CTA Buttons */}
           <div className="flex items-center gap-8 md:gap-16">
-            <Button variant="outline" size="sm" className="hidden md:inline-flex">
+            <Button variant="outline" size="sm" className="hidden lg:inline-flex whitespace-nowrap">
               <Calendar className="w-16 h-16 mr-8" />
               Schedule a Demo
             </Button>
-            <Button variant="primary" size="sm">
-              Get Started
-              <ArrowRight className="w-12 h-12 md:w-16 md:h-16 ml-4 md:ml-8" />
-            </Button>
+            <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer">
+              <Button variant="primary" size="sm" className="hidden lg:inline-flex whitespace-nowrap">
+                Get Started
+                <ArrowRight className="w-16 h-16 ml-8" />
+              </Button>
+            </a>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-8 -mr-8 text-neutral-600 hover:text-primary transition-colors"
+              aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            >
+              {mobileMenuOpen ? (
+                <X className="w-24 h-24" />
+              ) : (
+                <Menu className="w-24 h-24" />
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation */}
+        {mobileMenuOpen && (
+          <nav className="lg:hidden py-16 border-t border-neutral-200">
+            <div className="flex flex-col gap-8">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={cn(
+                    'px-8 py-12 text-base font-medium transition-colors rounded-lg',
+                    pathname === link.href
+                      ? 'text-primary bg-primary/5'
+                      : 'text-neutral-600 hover:text-primary hover:bg-neutral-50'
+                  )}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <div className="flex flex-col gap-8 pt-8 border-t border-neutral-200">
+                <Button variant="outline" size="sm" className="w-full justify-center">
+                  <Calendar className="w-16 h-16 mr-8" />
+                  Schedule a Demo
+                </Button>
+                <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer" className="w-full">
+                  <Button variant="primary" size="sm" className="w-full justify-center">
+                    Get Started
+                    <ArrowRight className="w-16 h-16 ml-8" />
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </nav>
+        )}
       </Container>
     </header>
   )

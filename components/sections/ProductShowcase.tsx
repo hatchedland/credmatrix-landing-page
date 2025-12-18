@@ -92,7 +92,7 @@ export default function ProductShowcase({ section, index = 0 }: ProductShowcaseP
             </p>
 
             {/* Feature Cards - 2x2 Grid */}
-            <div className="grid grid-cols-2 gap-8 md:gap-16 mb-24 md:mb-32">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-16 mb-24 md:mb-32">
               {section.features.map((feature, idx) => {
                 const Icon = iconMap[feature.icon] || Database
                 return (
@@ -107,13 +107,17 @@ export default function ProductShowcase({ section, index = 0 }: ProductShowcaseP
                     }}
                   >
                     <Card size="sm" className="h-full">
-                      <div className="w-24 h-24 md:w-32 md:h-32 rounded-sm bg-neutral-100 flex items-center justify-center mb-8 md:mb-12">
-                        <Icon className="w-12 h-12 md:w-16 md:h-16 text-neutral-500" />
+                      <div className="flex items-start gap-6">
+                        <div className="p-3 md:p-6 rounded-md bg-neutral-100 shrink-0 flex items-center justify-center">
+                          <Icon className="w-12 h-12 md:w-16 md:h-16 text-neutral-500" />
+                        </div>
+                        <div>
+                          <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 mb-2 md:mb-4">
+                            {feature.title}
+                          </h4>
+                          <p className="text-[10px] sm:text-xs text-neutral-500">{feature.description}</p>
+                        </div>
                       </div>
-                      <h4 className="text-xs sm:text-sm font-semibold text-neutral-900 mb-2 md:mb-4">
-                        {feature.title}
-                      </h4>
-                      <p className="text-[10px] sm:text-xs text-neutral-500">{feature.description}</p>
                     </Card>
                   </motion.div>
                 )
@@ -127,7 +131,9 @@ export default function ProductShowcase({ section, index = 0 }: ProductShowcaseP
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: DURATION.fast, delay: 0.7, ease: EASING }}
             >
-              <Button variant="outline" size="sm">Explore</Button>
+              <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm">Explore</Button>
+              </a>
               <Button variant="ghost" size="sm" className="text-neutral-600 hover:text-[#0E6EBE]">
                 Watch Tutorial
               </Button>

@@ -13,7 +13,7 @@ export default function CTA() {
       <Container>
         <AnimateOnScroll animation="fadeUp" className="max-w-3xl mx-auto text-center">
           <div className="flex justify-center mb-12 md:mb-16">
-            <Sparkles className="w-32 h-32 md:w-40 md:h-40 text-primary animate-pulse-slow" />
+            <Sparkles className="w-32 h-32 md:w-40 md:h-40 text-gray-600 animate-pulse-slow" />
           </div>
           <Heading as="h2" align="center" className="mb-16 md:mb-24">
             Generate your first report for free
@@ -23,9 +23,11 @@ export default function CTA() {
             embeds intelligence, precision, and security directly into your assessment
             process.
           </p>
-          <Button variant="primary" size="lg" className="hover:scale-105 transition-transform">
-            Get Started <ArrowRight className="w-16 h-16 md:w-20 md:h-20 ml-4 md:ml-8" />
-          </Button>
+          <a href="https://app.credmatrix.ai/" target="_blank" rel="noopener noreferrer">
+            <Button variant="primary" size="sm" className="hover:scale-105 transition-transform">
+              Get Started <ArrowRight className="w-16 h-16 md:w-20 md:h-20 ml-4 md:ml-8" />
+            </Button>
+          </a>
         </AnimateOnScroll>
       </Container>
     </Section>
